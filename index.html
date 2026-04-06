@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+  HOW TO EDIT THIS FILE:
+  - Open this file in Notepad (Windows) or TextEdit (Mac), or
+    ideally VS Code (free at code.visualstudio.com)
+  - Search for "EDIT:" comments to find everything you need to change
+  - Images: put your photo files in a folder called "images"
+    in the same place as this index.html file
+  - Upload BOTH this file AND the images folder to GitHub
+============================================================ -->
+
+<!-- EDIT: Change "Your Name" to your actual name -->
+<title>Portfolio — Your Name</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111;
+    --text: #e8e4dc;
+    --muted: #777;
+    --accent: #c8a97e;
+    --border: rgba(255,255,255,0.08);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.12em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  #hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1208 0%, #0a0a0a 40%, #0d1520 100%);
+  }
+
+  /* Optional: add a hero background image.
+     EDIT: replace 'images/hero-bg.jpg' with your image filename,
+     or delete this block entirely if you want the plain dark background. */
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.18;
+  }
+
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 256px;
+  }
+
+  .hero-accent-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    right: 35%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    opacity: 0.15;
+  }
+
+  .hero-number {
+    position: absolute;
+    top: 50%;
+    right: 3rem;
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-size: clamp(8rem, 16vw, 16rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-content { position: relative; max-width: 55ch; }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 2rem;
+    color: var(--text);
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: rgba(232,228,220,0.6);
+  }
+
+  .hero-sub {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    max-width: 38ch;
+    line-height: 1.9;
+  }
+
+  .hero-cta {
+    margin-top: 3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: gap 0.3s;
+  }
+
+  .hero-cta:hover { gap: 1.6rem; }
+
+  .hero-cta::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+
+  .hero-cta:hover::after { width: 60px; }
+
+  section { padding: 7rem 3rem; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    margin-bottom: 5rem;
+  }
+
+  .section-num {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-left: auto;
+    max-width: 200px;
+  }
+
+  #work { background: var(--bg); }
+
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(200,169,126,0.06);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0.75rem;
+  }
+
+  .photo-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: #1a1a1a;
+  }
+
+  .photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease, filter 0.4s ease;
+    filter: brightness(0.9) saturate(0.85);
+  }
+
+  .photo-item:hover img {
+    transform: scale(1.04);
+    filter: brightness(1) saturate(1);
+  }
+
+  /* Fallback when no image is set yet */
+  .photo-item .no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.12);
+    background: #1a1a1a;
+    letter-spacing: 0.06em;
+  }
+
+  .photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+  }
+
+  .photo-item:hover .photo-overlay { opacity: 1; }
+
+  .photo-label {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text);
+    font-weight: 300;
+  }
+
+  .photo-item:nth-child(1)  { grid-column: span 8; grid-row: span 2; height: 560px; }
+  .photo-item:nth-child(2)  { grid-column: span 4; height: 270px; }
+  .photo-item:nth-child(3)  { grid-column: span 4; height: 270px; }
+  .photo-item:nth-child(4)  { grid-column: span 5; height: 380px; }
+  .photo-item:nth-child(5)  { grid-column: span 7; height: 380px; }
+  .photo-item:nth-child(6)  { grid-column: span 4; height: 300px; }
+  .photo-item:nth-child(7)  { grid-column: span 4; height: 300px; }
+  .photo-item:nth-child(8)  { grid-column: span 4; height: 300px; }
+
+  #about {
+    background: var(--bg2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-portrait { position: relative; }
+
+  .portrait-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.92) saturate(0.8);
+  }
+
+  .portrait-frame .no-image {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-style: italic;
+    color: rgba(255,255,255,0.12);
+    font-size: 0.9rem;
+    background: linear-gradient(160deg, #1a1410 0%, #0e0e0e 100%);
+  }
+
+  .portrait-deco {
+    position: absolute;
+    top: 1.5rem;
+    left: -1.5rem;
+    right: 1.5rem;
+    bottom: -1.5rem;
+    border: 1px solid rgba(200,169,126,0.2);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .about-text { padding-top: 2rem; }
+
+  .about-intro {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 2.5rem;
+    color: var(--text);
+  }
+
+  .about-intro em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .about-body {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2;
+    margin-bottom: 3rem;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+
+  #services { background: var(--bg); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+  }
+
+  .service-card {
+    padding: 3rem 2.5rem;
+    background: var(--bg);
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .service-card:hover { background: var(--bg2); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-num {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-name {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .service-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  #contact {
+    background: var(--bg2);
+    text-align: center;
+    padding: 8rem 3rem;
+  }
+
+  .contact-headline {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--text);
+  }
+
+  .contact-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .contact-sub {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 3.5rem;
+  }
+
+  .contact-form {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group { margin-bottom: 1rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.9rem 1rem;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--accent); }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select { cursor: pointer; }
+  .form-group select option { background: #111; }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1.5rem;
+  }
+
+  .btn-submit:hover { background: var(--accent); color: #0a0a0a; }
+
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .social-links { display: flex; gap: 2rem; }
+
+  .social-links a {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .social-links a:hover { color: var(--accent); }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 90vw;
+    max-height: 88vh;
+  }
+
+  .lightbox-inner img {
+    max-width: 88vw;
+    max-height: 82vh;
+    object-fit: contain;
+    display: block;
+  }
+
+  .lightbox-inner .no-image {
+    width: 70vw;
+    max-width: 900px;
+    height: 60vh;
+    background: #181818;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.2);
+    font-family: var(--serif);
+    font-style: italic;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -3rem; right: 0;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .lightbox-close:hover { color: var(--text); }
+
+  .lightbox-caption {
+    position: absolute;
+    bottom: -2.5rem;
+    left: 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+    #about { grid-template-columns: 1fr; gap: 3rem; }
+    .gallery-grid { grid-template-columns: repeat(6, 1fr); }
+    .photo-item:nth-child(1) { grid-column: span 6; height: 340px; grid-row: span 1; }
+    .photo-item:nth-child(2) { grid-column: span 3; height: 200px; }
+    .photo-item:nth-child(3) { grid-column: span 3; height: 200px; }
+    .photo-item:nth-child(4), .photo-item:nth-child(5) { grid-column: span 3; height: 240px; }
+    .photo-item:nth-child(6), .photo-item:nth-child(7), .photo-item:nth-child(8) { grid-column: span 2; height: 180px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem; }
+    .nav-links li:not(:last-child) { display: none; }
+    #hero { padding: 0 1.5rem 4rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .photo-item:nth-child(n) { grid-column: span 1; height: 200px; grid-row: span 1; }
+    .photo-item:nth-child(1) { grid-column: span 2; height: 260px; }
+    .stats-row { gap: 2rem; }
+  }
+
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+  .stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.1s; }
+  .stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.2s; }
+  .stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.3s; }
+  .stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.4s; }
+  .stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.5s; }
+  .stagger.visible > *:nth-child(7) { opacity: 1; transform: none; transition-delay: 0.6s; }
+  .stagger.visible > *:nth-child(8) { opacity: 1; transform: none; transition-delay: 0.7s; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+  NAV BAR
+  EDIT: Change "Your Name" to your name
+============================================================ -->
+<nav>
+  <a href="#hero" class="nav-logo">Your Name</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+
+<!-- ============================================================
+  HERO SECTION
+  EDIT: Change the eyebrow text, title, and subtitle below.
+  Optional: add a background image by setting hero-bg-img
+  (see the CSS comment above for instructions)
+============================================================ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-img"></div><!-- remove this line if you don't want a bg image -->
+  <div class="hero-grain"></div>
+  <div class="hero-accent-line"></div>
+  <div class="hero-number">01</div>
+  <div class="hero-content">
+
+    <!-- EDIT: Short label at the top -->
+    <p class="hero-eyebrow">Photography Portfolio</p>
+
+    <!-- EDIT: Your main headline. The <em> tag makes text italic and slightly dimmed. -->
+    <h1 class="hero-title">Light is the<br><em>language</em><br>I speak.</h1>
+
+    <!-- EDIT: A short description of you and your work -->
+    <p class="hero-sub">Capturing fleeting moments, quiet landscapes, and human stories through the lens — based in Norway, working worldwide.</p>
+
+    <a href="#work" class="hero-cta">View work</a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+  GALLERY / WORK SECTION
+
+  HOW TO ADD YOUR PHOTOS:
+  1. Put your image files in a folder called "images" next to this file
+  2. For each photo block below, replace the <div class="no-image"> block
+     with: <img src="images/your-filename.jpg" alt="Photo description">
+  3. Change the label text inside <span class="photo-label">
+  4. Change data-category to one of: landscape / portrait / travel / architecture
+     (this controls which filter button shows/hides the photo)
+  5. Update the openLightbox('...') text to match your label
+
+  EXAMPLE — before:
+    <div class="no-image">Add photo here</div>
+
+  EXAMPLE — after:
+    <img src="images/fjord-sunset.jpg" alt="Fjord at sunset">
+============================================================ -->
+<section id="work">
+  <div class="section-header fade-in">
+    <span class="section-num">01 /</span>
+    <!-- EDIT: Section title -->
+    <h2 class="section-title">Selected work</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- EDIT: Add or remove filter buttons to match your categories -->
+  <div class="filter-bar stagger">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="landscape">Landscape</button>
+    <button class="filter-btn" data-filter="portrait">Portrait</button>
+    <button class="filter-btn" data-filter="travel">Travel</button>
+    <button class="filter-btn" data-filter="architecture">Architecture</button>
+  </div>
+
+  <div class="gallery-grid stagger">
+
+    <!-- PHOTO 1 — large, spans left side -->
+    <!-- EDIT: Replace no-image div with your img tag, update label and category -->
+    <div class="photo-item" data-category="landscape" onclick="openLightbox('images/photo1.jpg', 'Nordland fjord at dusk')">
+      <div class="no-image">Add photo here — images/photo1.jpg</div>
+      <!-- When you add your image, replace the line above with:
+           <img src="images/photo1.jpg" alt="Nordland fjord at dusk"> -->
+      <div class="photo-overlay"><span class="photo-label">Nordland fjord at dusk</span></div>
+    </div>
+
+    <!-- PHOTO 2 -->
+    <div class="photo-item" data-category="portrait" onclick="openLightbox('images/photo2.jpg', 'Morning light portrait')">
+      <div class="no-image">Add photo here — images/photo2.jpg</div>
+      <div class="photo-overlay"><span class="photo-label">Morning light portrait</span></div>
+    </div>
+
+    <!-- PHOTO 3 -->
+    <div class="photo-item" data-category="architecture" onclick="openLightbox('images/photo3.jpg', 'Oslo opera house')">
+      <div class="no-image">Add photo here — images/photo3.jpg</div>
+      <div class="photo-overlay"><span class="photo-label">Oslo opera house</span></div>
+    </div>
+
+    <!-- PHOTO 4 -->
+    <div class="photo-item" data-category="travel" onclick="openLightbox('images/photo4.jpg', 'Lofoten islands')">
+      <div class="no-image">Add photo here — images/photo4.jpg</div>
+      <div class="photo-overlay"><span class="photo-label">Lofoten islands</span></div>
+    </div>
+
+    <!-- PHOTO 5 -->
+    <div class="photo-item" data-category="landscape" onclick="openLightbox('images/photo5.jpg', 'Hardangervidda winter')">
+      <div class="no-image">Add photo here — images/photo5.jpg</div>
+      <div class="photo-overlay"><span class="photo-label">Hardangervidda winter</span></div>
+    </div>
+
+    <!-- PHOTO 6 -->
+    <div class="photo-item" data-category="portrait" onclick="openLightbox('images/photo6.jpg', 'Studio session')">
+      <div class="no-image">Add photo here — images/photo6.jpg</div>
+      <div class="photo-overlay"><span class="photo-label">Studio session</span></div>
+    </div>
+
+    <!-- PHOTO 7 -->
+    <div class="photo-item" data-category="travel" onclick="openLightbox('images/photo7.jpg', 'Bergen in rain')">
+      <div class="no-image">Add photo here — images/photo7.jpg</div>
+      <div class="photo-overlay"><span class="photo-label">Bergen in rain</span></div>
+    </div>
+
+    <!-- PHOTO 8 -->
+    <div class="photo-item" data-category="architecture" onclick="openLightbox('images/photo8.jpg', 'Brutalist concrete')">
+      <div class="no-image">Add photo here — images/photo8.jpg</div>
+      <div class="photo-overlay"><span class="photo-label">Brutalist concrete</span></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+  ABOUT SECTION
+  EDIT: Replace portrait image, headline, body text, and stats
+============================================================ -->
+<section id="about">
+
+  <div class="about-portrait fade-in">
+    <div class="portrait-deco"></div>
+    <div class="portrait-frame">
+      <!-- EDIT: Replace with your portrait photo -->
+      <div class="no-image">Add portrait here — images/portrait.jpg</div>
+      <!-- When ready, replace the line above with:
+           <img src="images/portrait.jpg" alt="Your Name"> -->
+    </div>
+  </div>
+
+  <div class="about-text fade-in">
+    <div class="section-header" style="margin-bottom: 2rem;">
+      <span class="section-num">02 /</span>
+      <h2 class="section-title">About</h2>
+    </div>
+
+    <!-- EDIT: Your intro quote / tagline -->
+    <p class="about-intro">I photograph the world in the <em>spaces between</em> planned and found.</p>
+
+    <!-- EDIT: Your bio. Use <br><br> for paragraph breaks. -->
+    <p class="about-body">
+      Based in Norway, I've spent years documenting light — the way it moves across a fjord at 2am in summer, the way it cuts hard shadows through a city at noon, the softness it gives a stranger's face in an unguarded moment.<br><br>
+      My work spans editorial, landscape, architecture, and portraiture. I believe in technical precision in service of emotional truth — no tricks, no heavy filters. Just light, composition, and patience.
+    </p>
+
+    <!-- EDIT: Your stats -->
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Years shooting</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Publications</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Countries</div>
+      </div>
+    </div>
+
+    <a href="#contact" class="hero-cta" style="color: var(--text);">Work together</a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+  SERVICES SECTION
+  EDIT: Update service names and descriptions, or remove cards you don't offer
+============================================================ -->
+<section id="services">
+  <div class="section-header fade-in">
+    <span class="section-num">03 /</span>
+    <h2 class="section-title">Services</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="services-grid stagger">
+
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <!-- EDIT: Service name -->
+      <div class="service-name">Editorial &amp; Press</div>
+      <!-- EDIT: Service description -->
+      <p class="service-desc">Photography for magazines, newspapers, and editorial features. Comfortable working fast on-location or in controlled environments.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-name">Portraiture</div>
+      <p class="service-desc">Personal and professional portrait sessions. Studio or natural light, individual or group. I work until you forget the camera is there.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-name">Landscape &amp; Nature</div>
+      <p class="service-desc">Long-form landscape projects, nature documentation, and travel photography. Patient with weather. Comfortable in remote terrain.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-name">Commercial</div>
+      <p class="service-desc">Brand photography, product shoots, and architectural commissions. Deliverables to spec, on time, with full licensing clarity.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+  CONTACT SECTION
+  EDIT: Headline, subtext, and form options below.
+  NOTE: The form currently shows a success message but doesn't
+  actually send an email. To make it send real emails, sign up
+  for free at formspree.io and replace the form tag with:
+  <form class="contact-form" action="https://formspree.io/f/YOUR_ID" method="POST">
+============================================================ -->
+<section id="contact">
+  <!-- EDIT: Contact headline -->
+  <h2 class="contact-headline fade-in">Let's make<br><em>something together.</em></h2>
+
+  <!-- EDIT: Subtext -->
+  <p class="contact-sub fade-in">Available for commissions, collaborations, and conversation.</p>
+
+  <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Project type</label>
+      <!-- EDIT: Update dropdown options to match your services -->
+      <select>
+        <option value="">— Select —</option>
+        <option>Editorial / Press</option>
+        <option>Portrait session</option>
+        <option>Landscape / Travel</option>
+        <option>Commercial</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea placeholder="Tell me about your project — timeline, scope, vision…"></textarea>
+    </div>
+    <button type="submit" class="btn-submit">Send message →</button>
+  </form>
+</section>
+
+
+<!-- ============================================================
+  FOOTER
+  EDIT: Update your name and social media links
+============================================================ -->
+<footer>
+  <!-- EDIT: Your name and year -->
+  <span class="footer-copy">© 2026 Your Name. All rights reserved.</span>
+  <div class="social-links">
+    <!-- EDIT: Replace # with your actual profile URLs -->
+    <a href="https://instagram.com/yourhandle" target="_blank">Instagram</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+    <a href="https://behance.net/yourprofile" target="_blank">Behance</a>
+    <!-- EDIT: Replace with your email address -->
+    <a href="mailto:you@email.com">Email</a>
+  </div>
+</footer>
+
+
+<!-- LIGHTBOX (no editing needed) -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner" id="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ close</button>
+    <div class="no-image" id="lightbox-placeholder" style="display:none; width:70vw; max-width:900px; height:60vh;"></div>
+    <img id="lightbox-img" src="" alt="" style="display:none;">
+    <span class="lightbox-caption" id="lightbox-caption"></span>
+  </div>
+</div>
+
+
+<script>
+  // Filter gallery
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.photo-item').forEach(item => {
+        if (filter === 'all' || item.dataset.category === filter) {
+          item.style.opacity = '1';
+          item.style.pointerEvents = 'auto';
+        } else {
+          item.style.opacity = '0.2';
+          item.style.pointerEvents = 'none';
+        }
+      });
+    });
+  });
+
+  // Lightbox — shows image if available, otherwise shows label text
+  function openLightbox(src, caption) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    const placeholder = document.getElementById('lightbox-placeholder');
+    const cap = document.getElementById('lightbox-caption');
+
+    lb.classList.add('open');
+    cap.textContent = caption || '';
+    document.body.style.overflow = 'hidden';
+
+    // Try to load the image; fall back to text if not found
+    img.onload = () => { img.style.display = 'block'; placeholder.style.display = 'none'; };
+    img.onerror = () => { img.style.display = 'none'; placeholder.style.display = 'flex'; placeholder.textContent = caption; };
+    img.src = src;
+    img.alt = caption;
+  }
+
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('open');
+      document.getElementById('lightbox-img').src = '';
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
+  });
+
+  // Scroll fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in, .stagger').forEach(el => observer.observe(el));
+
+  // Contact form (shows success message — see comment above about Formspree for real emails)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = 'Message sent ✓';
+    btn.style.borderColor = '#7aab8a';
+    btn.style.color = '#7aab8a';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
